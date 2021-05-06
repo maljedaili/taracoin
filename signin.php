@@ -95,4 +95,4 @@ if (!empty($_POST['email_signup']) && !empty($_POST['password1_signup']) && !emp
     </div>
 </main>
 
-
+<?php require 'inc/footer.php' ?>

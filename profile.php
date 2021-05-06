@@ -1,7 +1,7 @@
 <?php require 'inc/header.php' ?>
 <?php
 
-if (!empty($_SESSION['id'])) {
+if (!empty($_SESSION)) {
     $user_id = $_SESSION['id'];
 
     $sqlUser = "SELECT * FROM users WHERE id = '{$user_id}'";
@@ -20,6 +20,8 @@ if (!empty($_SESSION['id'])) {
                 </div>
                 <div class="col-3 offset-1">
                     <a href="products.php" class="btn btn-primary my-2">  SEE your Products</a>
+                      
+                      
                     </button>
                     <a href="addproducts.php" class="btn btn-primary my-2"> ADD Product </a>
                     <?php
@@ -29,9 +31,7 @@ if (!empty($_SESSION['id'])) {
                     ?>
                 </div>
             </div>
-           
         </main>
-
     <?php
     } else {
         echo " Erreur de connexion, veuillez vous reconnecter";
@@ -45,8 +45,6 @@ if (!empty($_SESSION['id'])) {
             <a href="login.php" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Se connecter</a>
         </p>
     </main>
-
-    
 <?php
 }
 ?>

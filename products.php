@@ -23,9 +23,8 @@ $products = $connect->query($sqlProducts)->fetchAll(PDO::FETCH_ASSOC);
                 <li><?php echo $product['created_at']; ?></li>
                 
             </li>
-            <li class="grey"><a href="product.php?id=<?php echo $product['products_id']; ?>" class="btn">Display </a></li>
-            <li class="grey"><a href="editproducts.php?id=<?php echo $product['products_id']; ?>" class="btn"> Edit </a></li>
-            <li class="grey"><a href="delproducts.php?id=<?php echo $product['products_id']; ?>" class="btn"> delete </a></li>
+            <li class="grey"><a href="product.php?id=<?php echo $product['products_id']; ?>" class="btn">Display article</a></li>
+            <li class="grey"><a href="editproducts.php?id=<?php echo $product['products_id']; ?>" class="btn"> Edit article</a></li>
                       
      </ul>
 
