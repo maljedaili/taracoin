@@ -1,39 +1,39 @@
 <?php require 'inc/header.php' ?>
 <?php
-//! Affichage de tous les produits. Il faudra une requête SQL qui récupère tous les produits, et qui les affiche dans des cartes séparées.
 
-//? Création de ma requête SQL. Vu que j'ai des colonne qui font référence à d'autres tables, je dois ajouter des jointures sur category et author.
 $sqlProducts = "SELECT p.*, u.username, c.categories_name FROM products AS p LEFT JOIN users AS u ON p.author = u.id LEFT JOIN categories AS c ON p.category = c.categories_id";
 
-//? Le résultat de ma requête est affiché dans un tableau associatif à l'aide du chaînage de méthodes.
 $products = $connect->query($sqlProducts)->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<main class="px-3">
-    <div class="row">
-        <?php
-        //? Je veux afficher tous mes produits, selon le même modèle, donc je fais une boucle, et j'insère les données dynamiques dans une carte sur laquelle je ferais une boucle. Résultat: J'obtiens autant de cartes que de produits, et toutes les cartes respectent le même format HTML.
+<section >
+<?php
         foreach ($products as $product) {
         ?>
-            <div class="card mx-2 text-white bg-info" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $product['products_name']; ?>
-                    </h5>
-                    <p class="card-text"><?php echo $product['products_description']; ?>
-                    </p>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><?php echo $product['products_price']; ?>
-                            €</li>
-                    </ul>
-                    <p><?php echo $product['categories_name']; ?></p>
-                    <p><?php echo $product['created_at']; ?></p>
-                    <!-- //? Je veux ajouter une page de détails, donc je crée un lien qui utiliseras une requête GET contenant l'id de mon produit pour afficher la page de détails du produit en question. -->
-                    <a href="product.php?id=<?php echo $product['products_id']; ?>" class="card-link btn btn-primary">Afficher article</a>
-                </div>
-            </div>
+    
+    <div class="columns">
+        <ul class="price">
+            
+            <li class="header"><?php echo $product['products_name']; ?></li>
+            
+            <figure class="image is-4by3"> 
+                <img src="assets/img/pic13.jpg" alt="">  
+                <p class="card-text"><?php echo $product['products_description']; ?> </p>    
+            <li class="grey"><?php echo $product['products_price']; ?>
+                <li><?php echo $product['categories_name']; ?></li>
+                <li><?php echo $product['created_at']; ?></li>
+                
+            </li>
+            <li class="grey"><a href="product.php?id=<?php echo $product['products_id']; ?>" class="btn">Display </a></li>
+            <li class="grey"><a href="editproducts.php?id=<?php echo $product['products_id']; ?>" class="btn"> Edit </a></li>
+            <li class="grey"><a href="delproducts.php?id=<?php echo $product['products_id']; ?>" class="btn"> delete </a></li>
+                      
+     </ul>
+
+    </div>
         <?php
         }
         ?>
-    </div>
-</main>
+  
+    </section>
 
-<?php require 'inc/footer.php' ?>
+
